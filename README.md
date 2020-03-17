@@ -1,27 +1,24 @@
+This is a proof of concept for a controlled data update mechanism in production.
+
+# Problem Statement
+Any production support team has to perform multiple database update. Database update is problematic. Lack of control can result in wiping off the data. However putting controls could mean delay in addressing the issue.
+
 # DataUpdate
+DataUpdate is a web-based application to control the data fixes in production database.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+# Components
 
-## Development server
+Web Component: Angular based web component. The web interface provides a way for a user to submit a query for execution. While the same interface provides interface for another user to execute it.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Backend : Flask based microservices which caters to web components. Currently the flask component encompasses all the logic from login to execution of queries.
 
-## Code scaffolding
+# Additional Information
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application supports two roles - 
+1. Submitor: User who can only submit query for execution
+2. Executor: User who can execute the query 
 
-## Build
+When a query is submitted, Regex is used to parse the query and create a select query which is executed. The submitor can view the number of records that gets updated. Based on that verification, submitor can submit query for execution.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The proof of concept has been carried out with SQLite, however any database could be used
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
