@@ -1,0 +1,82 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width:30%;
+    color:#FFCF75;
+    margin: 0.5rem 0 0 0.5rem;
+    flex: 1;
+}
+
+.card-wrapper:last-child{
+    margin-right: 0.5rem;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    background-color: #AA8239;
+    max-width: 100%;
+}
+
+.query{
+    font-size: smaller;
+    background-color: #FFBD44;
+    color: #211A0D;
+    border-radius: 0.1rem;
+    margin: 1rem 0.2rem 1rem 0.2rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    height: 3rem;
+}
+
+.information{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.information div{
+    background-color: #211A0D;
+    border: 0.1rem solid #FFCF75;
+    margin: 0.2rem 0 0.2rem 0.2rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    min-width: 15%;
+}
+
+.information div:last-child{
+    margin-right: 0.2rem;
+}
+
+button{
+
+    padding:0.5rem 0.5rem 0.5rem 0.5rem;
+    margin: 0.5rem 0.2rem 0.5rem 0.2rem;
+    background-color: #FFBD44;
+    color:#211A0D;
+    border: 0.1rem solid #211A0D;
+}
+
+.errorMsg{
+    background-color: #F88E8E;
+    color: whitesmoke;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.3;
+    margin: 1rem 0 0.5rem 0;
+    width: 100%;
+}
+
+.successMsg{
+    background-color: rgb(146, 247, 121);
+    color: rgba(57, 109, 8, 0.596);
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.3;
+    margin: 1rem 0 0.5rem 0;
+    width: 100%;
+}

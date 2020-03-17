@@ -1,0 +1,9 @@
+<div class="wrapper">
+    <div id="user">
+        <input type="text" placeholder="Enter your user id" class="input" #userid>
+    </div>
+    <div id="password">
+        <input type="password" placeholder="Enter your password" class="input"  #password>
+    </div>
+    <button class="btn" (click)="validate(userid.value,password.value)">Sign In</button>
+</div>

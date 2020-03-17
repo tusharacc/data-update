@@ -1,0 +1,20 @@
+<div *ngIf="flashMessage"
+    [ngClass]="{'errorMsg': type === 'error','warningMsg': type === 'warning','successMsg': type === 'success' }">
+    {{ message }}
+</div>
+<div class="wrapper">
+    <div class="card-wrapper" *ngFor="let item of queries">
+        <div class="card">
+            <div class="query">
+                {{ item.update_query}}
+            </div>
+            <div class="information">
+                <div class="application"> {{ item.application}} </div>
+                <div class="user"> {{ item.user}} </div>
+                <div class="rows"> {{ item.num_of_rows}}</div>
+                <div class="rows"> {{ item.current_rows}} </div>
+            </div>
+            <button (click)="executeQuery(item.id)"> EXECUTE QUERY </button>
+        </div>
+    </div>
+</div>

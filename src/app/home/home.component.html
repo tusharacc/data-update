@@ -1,0 +1,64 @@
+<section class="wrapper">
+    <div class="user-input">
+        <div *ngIf="flashMessage"
+            [ngClass]="{'errorMsg': type === 'error','warningMsg': type === 'warning','successMsg': type === 'success' }">
+            {{ message }}</div>
+        <div>
+            <textarea row="150" cols="120" #query></textarea>
+
+            <button class="btn" (click)="verifyQuery(query.value)" type="button">Verify</button>
+
+        </div>
+
+    </div>
+    <div class="status">
+        <div class="submitted-query">
+            <h3>SUBMITTED QUERY</h3>
+            <div class="card-wrapper">
+                <div class="card" *ngFor="let item of submittedQueries" >
+                    <div class="update-query">{{ item.query}}</div>
+                    <div class="information-block">
+                        <div> {{ item.date_submitted }}</div>
+                        <div> {{ item.application }}</div>
+                        <div> {{ item.status }}</div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="validated-query">
+            <h3 style="margin-left:1px;">VALIDATED QUERY</h3>
+            <div class="card-wrapper">
+                <div class="card" *ngFor="let item of queries" [ngClass]="{'error':item.error}">
+                    <div class="update-query">{{ item.update_query}}</div>
+                    <div class="information-block">
+                        <div># of Rows : {{ item.number_of_rows }}</div>
+                        <div> {{ item.message }}</div>
+                    </div>
+                    <div class="action-block">
+                        <button [disabled]="item.error" (click)="displayData(item.rows, item.select_query)">Show
+                            Records</button>
+                        <button [disabled]="item.error" (click)="submitQuery(item.update_query, item.number_of_rows)">Submit Query</button>
+                    </div>
+                </div>
+                <div *ngIf="showData" class="show-data">
+                    <div><strong>Select Query: </strong> <i>{{ selectQuery}}</i></div>
+                    <table>
+                        <tr>
+                            <th *ngFor="let header of headers">{{ header }}</th>
+                        </tr>
+                        <tr *ngFor="let row of data">
+                            <td *ngFor="let cell of row">{{ cell }}</td>
+                        </tr>
+                    </table>
+                    <button (click)="closeDiv()">CLOSE WINDOW</button>
+                </div>
+            </div>
+            <div *ngIf="showTable" class="submit-queries">
+                <button [disabled]="errorFound">Submit All</button>
+            </div>
+        </div>
+    </div>
+
+
+</section>
