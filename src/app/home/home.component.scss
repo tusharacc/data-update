@@ -1,7 +1,7 @@
 h3{
     text-align: center;
     background-color: #210E0D;
-    color:#FF7975;
+    color: #FFCF75;
     width: 100%;
 }
 .wrapper{
@@ -15,21 +15,44 @@ h3{
     flex-direction: column;
 }
 
+.form-control{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.form-control div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 0.2rem;
+}
+
 textarea{
     height: 5rem;
     resize: none;
-    width: 100%;
+    width: 99%;
 }
 
 button{
     width: 100%;
-    background-color: rgba(0, 102, 255, 0.493);
+    background-color: #FFCF75;
+    color:  #210E0D;
     margin-left:0 0 0 0;
-    color: white;
-    border: 0.1rem solid #FBEEC1;
+    border: 0.1rem solid #210E0D;
     border-radius: 0.2rem;
     padding: 0.4rem 0.4rem 0.4rem 0.4rem;
     flex: 1 1 0;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+select{
+ 
+    background-color: #FFCF75;
+    color:  #210E0D;
+    border: 0.1rem solid #210E0D;
+    border-radius: 0.2rem;
     font-weight: bold;
 
 }
@@ -41,29 +64,32 @@ button{
 
 .submitted-query{
     max-width: 50%;
+    min-width: 50%;
     display:flex;
     flex-direction: column;
+    color: #FFCF75;
 }
 
 .validated-query{
     display:flex;
     flex-direction: column;
     width: 100%;
+    color: #FFCF75;
 }
 
 .card-wrapper{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .card {
     display: flex;
     flex-direction: column;
-    max-width: 45%;
-    background-color: #29506D;
-    color: #718EA4;
+    max-width: 49%;
+    background-color: #AA7539;
+    color: #210E0D;
     margin-left: 0.1rem;
     margin-bottom: 0.1rem;;
 }
@@ -74,25 +100,26 @@ button{
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;
     border-radius: 0.5rem 0.5rem 0.5rem 0.5rem;
     margin: 0.2rem 0.2rem 0.2rem 0.2rem;
-    font-size: small;
+    font-size: smaller;
     max-height: 2rem;
 }
 
 .information-block,.action-block{
     display: flex;
     flex-direction: row;
-    
+    font-size: smaller;
+    margin-top: 0.5rem;
 }
 
 .information-block div{
-    border: 0.1rem solid #481380;
+    border: 0.1rem solid #552E00;
     padding: 0.2rem 0.2rem 0.2rem 0.2rem;
     flex-grow: 1;
     max-width: 50%;
     max-height: 2rem;
     margin: 0.2rem 0.2rem 0.2rem 0.2rem;
     font-size: smaller;
-    color: #29506D;
+    color: whitesmoke;
     background-color: #718EA4;
 }
 
@@ -108,6 +135,10 @@ button{
 }
 
 button:disabled{
+    background-color: gray;
+}
+
+select:disabled{
     background-color: gray;
 }
 
@@ -160,41 +191,3 @@ button:disabled{
     border-radius: 0.3;
     margin: 0 0 0.5rem 0;
 }
-
-/*.validated-query{
-    margin-top: 1rem;   
-    padding: 0 0 0 0;
-    margin-left: 0;
-}
-
-.validated-query table{
-    border: 0.1rem solid #766C7F;
-    width: 100%
-}
-th{
-    background-color: #947EB0;
-    color: whitesmoke;
-}
-
-.submit-queries{
-    margin-top: 1rem;
-}
-
-button:disabled{
-    background-color: gray;
-}
-
-.error{
-    background-color: #F88E8E;
-}
-
-
-
-.errorMsg{
-    background-color: #F88E8E;
-    color: whitesmoke;
-    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
-    border-radius: 0.3;
-    margin: 0 0 0.5rem 0;
-}*/
-

@@ -3,11 +3,33 @@
         <div *ngIf="flashMessage"
             [ngClass]="{'errorMsg': type === 'error','warningMsg': type === 'warning','successMsg': type === 'success' }">
             {{ message }}</div>
-        <div>
+        <div class="form-control">
             <textarea row="150" cols="120" #query></textarea>
+            <div>
+                <select 
+                    class="select-control" 
+                    (change)="valueSelected('app',selectapp.value)" #selectapp>
+                    <option value="Select Application" >Select Application</option>
+                    <option value="{{item}}" *ngFor="let item of apps">{{item}}</option>
+                </select>
+                
+                <select 
+                    class="select-control" 
+                    [disabled]="disableDatabaseSelect"
+                    (change)="valueSelected('database',selectdatabase.value)"
+                    #selectdatabase>
+                    <option value="Select Database">Select Database</option>
+                    <option value="{{item}}" *ngFor="let item of databases">{{item}}</option>
+                </select>
 
-            <button class="btn" (click)="verifyQuery(query.value)" type="button">Verify</button>
-
+                <button 
+                    class="btn" 
+                    (click)="verifyQuery(query.value,selectapp.value,selectdatabase.value)" 
+                    type="button" 
+                    [disabled]="disableVerifyButton">Verify</button>
+    
+            </div>
+            
         </div>
 
     </div>
@@ -38,7 +60,7 @@
                     <div class="action-block">
                         <button [disabled]="item.error" (click)="displayData(item.rows, item.select_query)">Show
                             Records</button>
-                        <button [disabled]="item.error" (click)="submitQuery(item.update_query, item.number_of_rows)">Submit Query</button>
+                        <button [disabled]="item.error" (click)="submitQuery(item.update_query, item.select_query,item.number_of_rows,selectapp.value,selectdatabase.value,$event)">Submit Query</button>
                     </div>
                 </div>
                 <div *ngIf="showData" class="show-data">

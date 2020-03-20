@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  
+  queryApp: string = '';
+  databaseSelected: string = '';
+  databases:[];
   flashMessage:boolean = false;
   erroredQuery:string = ''
   message:string = '';
@@ -21,12 +23,20 @@ export class HomeComponent implements OnInit {
   showTable: boolean = false;
   errorFound: boolean = false;
   showData: boolean = false;
-  submittedQueries: []
+  submittedQueries: [];
+  apps:[];
+  disableDatabaseSelect: boolean =true;
+  disableVerifyButton: boolean = true;
 
   constructor(private service: DataService,private cookieService:CookieService,private router:Router) { }
 
   ngOnInit() {
+    this.getSUbmittedQueries()
+  }
+
+  getSUbmittedQueries(){
     this.submittedQueries = [];
+    this.apps = this.service.application
     if (this.service.user_id){
       this.service.getQueries()
       .subscribe(data => {
@@ -57,16 +67,19 @@ export class HomeComponent implements OnInit {
     return true 
   }
 
-  submitQuery(updateQuery,numOfRows){
-    console.log("The update Query is ,", updateQuery);
+  submitQuery(updateQuery,selectQuery,numOfRows, appName, databaseName,event){
+    console.log("The update Query is ,", updateQuery,selectQuery,numOfRows,appName,databaseName);
     let userid:string = this.cookieService.get('username');
-    this.service.submit(updateQuery,userid,numOfRows,'app')
+    this.service.submit(updateQuery,selectQuery,numOfRows,appName,databaseName)
     .subscribe(data =>{
       console.log('Data from Post', data)
       this.flashMessage = true;
       if (data['status']){
         this.type = 'success';
         this.message = `${updateQuery} submitted succesfully`;
+        this.getSUbmittedQueries();
+        console.log('Disabled button', event)
+        event.target.disabled = true;
       } else {
         this.type = 'error';
         this.message = `${updateQuery} submission failed. Reason ${data['message']}`;
@@ -78,15 +91,15 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  verifyQuery(query){
-    console.log(query);
+  verifyQuery(query,select){
+    console.log(query,select);
     let verified:boolean = this.basicVerification(query);
     console.log("The verification status", verified)
     if (verified){
       let number_of_records;
       this.queries = [];
       let queryMessage: string;
-      this.service.verify(query)
+      this.service.verify(query, this.queryApp, this.databaseSelected)
       .subscribe(data => {
         console.log(data)
         data.forEach(element => {
@@ -145,5 +158,35 @@ export class HomeComponent implements OnInit {
     this.headers = [];
     this.data = [];
     this.selectQuery = '';
+  }
+
+  valueSelected(type,value){
+
+    console.log("The control is",value)
+    if (value === 'Select Application' || value === 'Select Database'){
+      this.disableDatabaseSelect = true
+      this.disableVerifyButton = true
+    } else {
+      if (type === 'app'){
+        this.queryApp = value
+        this.databases = this.fetchDatabases(value)
+        this.disableDatabaseSelect = false
+      } else if (type === 'database'){
+        this.databaseSelected = value
+        this.disableVerifyButton = false
+      }
+    }
+    
+    
+  }
+
+  fetchDatabases(value){
+    for (const element of this.service.databases){
+      for (const key in element){
+        if (key === value){
+          return element[key]
+        }
+      }
+    }
   }
 }

@@ -5,7 +5,7 @@ CONN = r'./app-db/data-update.db'
 
 def get_queries(userid):
     query = (q.query_list['get_queries'],(userid,))
-    result = db.get_data(CONN,query)
+    result = db.get_data('sqlite',CONN,query)
     records = []
     for item in result['data']:
         #query,num_of_rows,date_submitted,status,date_executed,application

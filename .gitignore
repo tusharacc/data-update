@@ -44,3 +44,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+/data-update-flask/config.ini
+/data-update-flask/sample.sql
+
+data-update-flask/__pycache__/*

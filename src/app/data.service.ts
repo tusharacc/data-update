@@ -14,16 +14,18 @@ export class DataService   {
   url:string = 'http://127.0.0.1:5000/';
   user_id: string;
   application:[];
+  databases:Array<{}>;
   constructor(private http:HttpClient) { }
 
-  verify(query){
+  verify(query, app, database){
     let endpoint = this.url + 'verify'
-    return this.http.post<[]>(endpoint,JSON.stringify({query: query}),this.httpOptions);
+    return this.http.post<[]>(endpoint,JSON.stringify({query: query, application: app, database: database}),this.httpOptions);
   }
 
-  submit(query,numOfRows,app){
+  submit(updateQuery,selectQuery,numOfRows,appName,databaseName){
+    console.log("The data received are",updateQuery, selectQuery, numOfRows, appName,databaseName)
     let endpoint = this.url + 'submit'
-    return this.http.post<{}>(endpoint,JSON.stringify({query: query,user_id: this.user_id,num_of_rows: numOfRows, app: app}),this.httpOptions);
+    return this.http.post<{}>(endpoint,JSON.stringify({update_query: updateQuery,select_query: selectQuery,user_id: this.user_id,num_of_rows: numOfRows, app: appName, db_name: databaseName}),this.httpOptions);
   }
 
   getQueries(){

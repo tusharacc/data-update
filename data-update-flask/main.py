@@ -10,6 +10,7 @@ import check_user as chk
 import fetch
 import query_in_queue as qq
 import execute as ex
+import config
 
 app = Flask(__name__)
 CORS(app)
@@ -22,7 +23,9 @@ def analyze():
     print (req)
     print ("The cookie is",request.cookies)
     query = req['query']
-    response = ver.verify_query(query)
+    application = req['application'].strip()
+    db_name = req['database'].strip()
+    response = ver.verify_query(query,application,db_name)
     print (response)
     return make_response(jsonify(response),200)
 
@@ -31,10 +34,12 @@ def submit():
     req = request.get_json()
     print ("submit received",req)
     user_id = req['user_id']
-    query = req['query']
+    update_query = req['update_query']
+    select_query = req['select_query']
     num_of_rows = req['num_of_rows']
     app = req['app']
-    result = sub.submit_query(query,num_of_rows,user_id,app)
+    db_name = req['db_name']
+    result = sub.submit_query(update_query,select_query,num_of_rows,user_id,app,db_name)
     return make_response(jsonify(result),200)
 
 @app.route('/login',methods=['POST'])
@@ -46,6 +51,7 @@ def login():
     print (result)
     login_status = False
     applications = []
+    databases = []
     access = ''
     user = ''
     message = ''
@@ -57,13 +63,19 @@ def login():
                 print ("Prinitng item",item)
                 user = item[0]
                 applications.append(item[2])
+                for app in applications:
+                    print ("The app is", app)
+                    d = {}
+                    temp = config.get_database_value(app). split(',')
+                    d[app] = temp
+                    databases.append(d)
                 access = item[1]
         else:
             message = "User Id or Password Not set up"
             
     else:
         message = f"Application Issue - {result['message']}"
-    res = make_response(jsonify({"login":login_status,"applications":applications,"access":access,"message": message}),200)
+    res = make_response(jsonify({"login":login_status,"applications":applications,"access":access,"message": message,'databases': databases}),200)
     res.headers["Access-Control-Allow-Origin"] = 'http://localhost:4200'
     res.headers["Access-Control-Allow-Credentials"] = True
 

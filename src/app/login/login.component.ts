@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
         this.service.user_id = userid
         if (data['access'] === 'submitor'){
           this.service.application = data['applications']
+          this.service.databases = data['databases']
           this.router.navigateByUrl('/home')
         } else if (data['access'] === 'executor'){
           this.service.application = data['applications']
