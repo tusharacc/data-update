@@ -1,0 +1,53 @@
+.ng-valid[required], .ng-valid.required{
+    border-left: 0.2rem solid #42A948;
+}
+
+.ng-invalid:not(form){
+    border-left: 0.2rem solid #A94442;
+}
+
+form{
+    margin-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.form-group{
+    margin-top: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+input{
+    width: 100%;
+    background-color: white;
+    color: #210E0D;
+    border: 0.1rem solid #210E0D;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+}
+
+select{
+    background-color: #FFCF75;
+    color:  #210E0D;
+    border: 0.1rem solid #210E0D;
+    border-radius: 0.2rem;
+    font-weight: bold;
+}
+
+button{
+    margin-top:0.2rem;
+    width: 100%;
+    background-color: #FFCF75;
+    color:  #210E0D;
+    margin-left:0 0 0 0;
+    border: 0.1rem solid #210E0D;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+    flex: 1 1 0;
+    font-weight: bold;
+    font-size: smaller;
+}

@@ -1,0 +1,12 @@
+<div class="wrapper">
+    <div *ngIf="flashMessage"
+            [ngClass]="{'errorMsg': type === 'error','warningMsg': type === 'warning','successMsg': type === 'success' }">
+            {{ message }}</div>
+    <div class="action">
+        <button>SET UP USER</button>
+        <button (click)="loadComponent('template')">TEMPLATE QUERIES</button>
+    </div>
+    <div class="additional-info">
+        <app-template-queries (flashMessage)="displayMessage($event)" *ngIf="load==='template'"></app-template-queries>
+    </div>
+</div>

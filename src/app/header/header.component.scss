@@ -4,3 +4,29 @@ header{
     background-color: #211A0D;
     color: #FFCF75;
 }
+
+.sub-menu{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sub-menu a{
+    margin-left: 0.5rem;
+    background-color: #D4AB6A;
+    color: #805615;
+    border-radius: 0.2rem ;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+    cursor: pointer;
+}
+
+a:hover{
+    background-color: #FFCF75;
+    color: #211A0D;
+    padding: 0.3rem 0.3rem 0.3rem 0.3rem;
+    border: 0.1rem solid whitesmoke;
+    border-radius: 0.2rem ;
+    cursor: pointer;
+}

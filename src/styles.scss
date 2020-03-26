@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+button{
+    background-color: #FFCF75;
+    color:  #210E0D;
+    border: 1px solid #210E0D;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+select{
+    background-color: #FFCF75;
+    color:  #210E0D;
+    border: 1px solid #210E0D;
+    border-radius: 0.2rem;
+    font-weight: bold;
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+    font-size: smaller;
+}
+
+input{
+    background-color: white;
+    color: #210E0D;
+    border: 1px solid #210E0D;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+kbd {
+    background-color: #eee !important;
+    font-size: xx-small !important;
+    border-radius: 3px !important;
+    border: 1px solid #b4b4b4 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset !important;
+    color: #333 !important;
+    display: inline-block !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    padding: 2px 4px !important;
+    white-space: nowrap !important;
+}
+
+.error{
+    background-color: lightcoral;
+    color: #550000;
+}
+
+.success{
+    background-color: #B2F4B2;
+    color: #145b14;
+}

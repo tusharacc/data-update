@@ -13,7 +13,10 @@ def get_sql_type(key):
 
 def get_value(section_name,key):
     config.read('config.ini')
-    value = config[section_name][key]
+    try:
+        value = config[section_name][key]
+    except KeyError as ex:
+        value = 'Database not avaiable'
     return value
 
 

@@ -1,0 +1,28 @@
+<form #queryForm="ngForm">
+    <input type="text" 
+        placeholder="Enter Template Query" 
+        [(ngModel)]="query"
+        name="query"
+        required>
+    <div class="form-group">
+        <input type="text" 
+            placeholder="Enter Query Name" 
+            [(ngModel)]="name"
+            name="name"
+            required>
+        <input type="text" 
+            placeholder="# of Rows to be updated" 
+            [(ngModel)]="rows"
+            name="rows"
+            required>
+        <select name="appName" [(ngModel)]="app" name="app" (change)="applicationSelected()" >
+            <option value="Select Application">Select Application</option>
+            <option value="{{item}}" *ngFor="let item of applications">{{item}}</option>
+        </select>
+        <select name="database" [disabled]="disableDbSelect" [(ngModel)]="database" name="database">
+            <option value="Select Database">Select Database</option>
+            <option value="{{item}}" *ngFor="let item of applicableDatabases">{{item}}</option>
+        </select>
+    </div>
+    <button (click)="submitTemplateQuery()">Submit</button>
+</form>

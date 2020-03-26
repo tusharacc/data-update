@@ -2,34 +2,25 @@
     margin-top: 1rem;
     display: flex;
     flex-direction: row;
-    
 }
 
-div{
+#user, #password{
+    width: 100%;
     flex-grow: 2;
-    margin-left: 1rem;
-}
-
-div:first-child{
     margin-left: 0;
 }
 
-
-.input{
+#user input,#password input{
     width: 100%;
-    background-color: white;
-    color: #210E0D;
-    border: 0.1rem solid #210E0D;
-    border-radius: 0.2rem;
-    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
 
-.btn{
-    margin-left: 1rem;
-    background-color: #FFCF75;
-    color:  #210E0D;
-    border: 0.1rem solid #210E0D;
-    border-radius: 0.2rem;
+
+button{
+    width: 100%;
     flex-grow: 1;
 }
+
+
+
+
 

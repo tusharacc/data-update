@@ -1,0 +1,43 @@
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.action{
+    margin-top: 0.2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+button{
+    width: 100%;
+    background-color: #FFCF75;
+    color:  #210E0D;
+    margin-left:0 0 0 0;
+    border: 0.1rem solid #210E0D;
+    border-radius: 0.2rem;
+    padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+    flex: 1 1 0;
+    font-weight: bold;
+    font-size: smaller;
+}
+
+.errorMsg{
+    margin-top: 0.2rem;
+    background-color: #F88E8E;
+    color: whitesmoke;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.3;
+    margin: 0 0 0.5rem 0;
+}
+
+.successMsg{
+    margin-top: 0.2rem;
+    background-color: rgb(146, 247, 121);
+    color: rgba(57, 109, 8, 0.596);
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0.3;
+    margin: 0 0 0.5rem 0;
+}

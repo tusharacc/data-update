@@ -7,10 +7,11 @@ import {CookieService} from 'ngx-cookie-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  
   title = 'data-update';
-
   cookieValue = 'UNKNOWN';
-
+  flashMessage: boolean = false;
+  
   constructor (private cookieService:CookieService){}
 
   ngOnInit(): void{

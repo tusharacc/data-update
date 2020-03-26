@@ -11,6 +11,10 @@ import fetch
 import query_in_queue as qq
 import execute as ex
 import config
+import app_config as appConfig
+import submit_template_query as tmp
+import get_template_query as tmp_query
+import execute_template_query as tmp_exec
 
 app = Flask(__name__)
 CORS(app)
@@ -99,6 +103,47 @@ def execute_query():
         query_id = req['id']
         result = ex.execute_query(query_id)
         return  make_response(jsonify(result), 200)
+
+@app.route('/executeTemplateQuery',methods=['POST'])
+def execute_template_query():
+    if request.method == 'POST':
+        req = request.get_json()
+        print ("Execute Query received",req)
+        query = req['query']
+        query_name = req['name']
+        db_name = req['db']
+        app = req['application']
+        result = tmp_exec.execute_query(query,query_name,app,db_name)
+        return  make_response(jsonify(result), 200)
+
+@app.route('/submittemplatequery',methods=['POST'])
+def submit_template_query():
+    if request.method == 'POST':
+        req = request.get_json()
+        print ("Execute Query received",req)
+        #query: query,name: name, app: app, db_name: db_name, rows: rows
+        query = req['query']
+        name = req['name']
+        app = req['app']
+        db_name = req['db_name']
+        rows = int(req['rows'])
+        result = tmp.submit_query(query,name,app,db_name,rows)
+        return  make_response(jsonify(result), 200)
+
+@app.route('/appconfig',methods=['GET'])
+def get_application_config():
+    result = appConfig.get_configurations()
+    return  make_response(jsonify(result), 200)
+
+@app.route('/gettemplatequery',methods=['POST'])
+def get_template_query():
+    if request.method == 'POST':
+        req = request.get_json()
+        print ("received",req)
+        user_id = req['user_id']
+        result = tmp_query.get_template_queries(user_id)
+        print (result)
+        return make_response(result,200)
 
 @app.route('/query',methods=['GET','POST'])
 def query():

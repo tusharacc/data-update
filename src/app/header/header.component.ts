@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  role:string = ''
+  constructor(private service: DataService, private router: Router) { }
 
   ngOnInit() {
   }
+
+  ngDoCheck() {
+    if (this.service.role != ''){
+      this.role = this.service.role
+    }
+  }
+
+  navigateTo(url,event){
+    console.log("Event is", event)
+    this.router.navigateByUrl(url)
+  }
+  
 
 }

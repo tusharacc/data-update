@@ -1,2 +1,5 @@
 <app-header></app-header>
+<div *ngIf="flashMessage"
+    [ngClass]="{'errorMsg': type === 'error','warningMsg': type === 'warning','successMsg': type === 'success' }">
+    {{ message }}</div>
 <router-outlet></router-outlet>

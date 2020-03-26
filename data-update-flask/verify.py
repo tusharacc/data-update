@@ -5,7 +5,7 @@ import connection as cn
 import config
 
 query_pattern = re.compile(r'^\s*update\s+(?P<table_name>.*)\s+set\s+(?P<columns>.*)\s+where\s+(?P<condition>.*)\s*$',flags=re.IGNORECASE)
-column_value_pattern = re.compile(r'^\s*(?P<column>.*)\s*=\s*(?P<value>.*)\s*$')
+column_value_pattern = re.compile(r'^\s*(?P<column>.*)\s*=\s*(?P<value>.*)\s*$',flags=re.IGNORECASE)
 #CONN = r'./sample-db/sample.db'
 
 '''
@@ -51,9 +51,12 @@ def verify_query(query,application,database=None):
             rows = []
             #print (result['data'].keys())
             for data in result['data']:
+                print ("The data processes is", data)
                 d = {}
+                row = 0
                 for col in columns:
-                    d[col] = data[col.strip()]
+                    d[col] = data[row]
+                    row += 1
                 rows.append(d)
             output.append({'update_query':item,'select_query':select_query[0],'number_of_rows':number_of_records,'rows':rows,'status':'Ok'})
         else:

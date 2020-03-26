@@ -1,11 +1,14 @@
 <header>
-    <div id="brand">
+    <div class="brand">
         <h2 style="margin-left: 1rem;">Data Update</h2>
     </div>
-    <div id="sub-menu">
-        
+    <div class="sub-menu">
+        <a *ngIf="role=='submitor'" routerlink="/home" (click)="navigateTo('/home',$event)">Home</a>
+        <a *ngIf="role=='submitor'" routerlink="/template" (click)="navigateTo('/template',$event)">Template Query</a>
+        <a *ngIf="role=='executor'" routerlink="/execute" (click)="navigateTo('/execute',$event)">Execute</a>
+        <a *ngIf="role=='executor'" routerlink="/admin" (click)="navigateTo('/admin',$event)">Admin</a>
     </div>
-    <div id="login-status">
+    <div class="login-status">
 
     </div>
 </header>

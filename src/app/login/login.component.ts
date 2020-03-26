@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
 import {Router} from '@angular/router';
 import { DataService } from '../data.service';
@@ -26,9 +26,13 @@ export class LoginComponent implements OnInit {
         if (data['access'] === 'submitor'){
           this.service.application = data['applications']
           this.service.databases = data['databases']
+          this.service.role = data['access']
+
           this.router.navigateByUrl('/home')
         } else if (data['access'] === 'executor'){
           this.service.application = data['applications']
+          this.service.role = data['access']
+
           this.router.navigateByUrl('/execute')
         }
         

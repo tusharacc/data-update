@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import { HttpClient, HttpHeaders,  } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable , of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,9 @@ export class DataService   {
   url:string = 'http://127.0.0.1:5000/';
   user_id: string;
   application:[];
+  role:string;
   databases:Array<{}>;
+
   constructor(private http:HttpClient) { }
 
   verify(query, app, database){
@@ -57,5 +59,30 @@ export class DataService   {
     }
   }
 
+  getApplicationConfigurations(){
+    let endpoint = this.url + 'appconfig'
+    return this.http.get<[{}]>(endpoint,this.httpOptions);
+
+  }
+
+  submitTemplateQuery(query,name, app, db_name,rows){
+    let endpoint = this.url + 'submittemplatequery'
+    //this.query, this.name, this.app, this.database, this.rows
+    return this.http.post<[]>(endpoint,JSON.stringify({query: query,name: name, app: app, db_name: db_name, rows: rows}),this.httpOptions);
+  }
+
+  getTemplateQueries(){
+    let endpoint = this.url + 'gettemplatequery';
+    if (this.user_id){
+      return this.http.post<[]>(endpoint,JSON.stringify({user_id: this.user_id}),this.httpOptions);
+    }
+  }
+
+  executeTemplateQueries(incomingQuery,name,db_name,app){
+    let endpoint = this.url + 'executeTemplateQuery';
+    if (this.user_id){
+      return this.http.post<[]>(endpoint,JSON.stringify({query: incomingQuery, name: name, db: db_name, application: app }),this.httpOptions);
+    }
+  }
 
 }

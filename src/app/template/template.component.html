@@ -1,0 +1,43 @@
+<div class="wrapper">
+    <div class="select">
+        <select name="queryname" [(ngModel)]="queryname" (change)="querySelected()">
+            <option value="SELECT QUERY">SELECT QUERY</option>
+            <option value="{{item}}" *ngFor="let item of queries">{{item}}</option>
+        </select>
+    </div>
+    <div class="additional-info" *ngIf="showAdditionalInfo">
+        <div>{{appName}}</div>
+        <div>{{database}}</div>
+        <div>{{query}}</div>
+    </div>
+    <div class="content" *ngIf="showAdditionalInfo">
+        <form #f="ngForm" novalidate>
+            <div class="header">
+                <div *ngFor="let col of columns">{{col}}</div>
+                <div>Action</div>
+            </div>
+            <div class="table-body">
+
+                <div *ngFor="let col of columns"><input name="{{col}}" ngModel placeholder="Enter {{ col }}"
+                        style="width:11rem;"></div>
+                <div class="buttons">
+                    <div class="button" (click)="onSubmit(f)" style="background-color: #211A0D;color:  #FFCF7F;padding: 0 0 0 0;">ADD</div>
+                    <div class="button" (click)="resetForm()" style="background-color: #211A0D;color:  #FFCF7F;padding: 0 0 0 0;">RESET</div>
+                    <div class="button" (click)="submitQueries()" style="background-color: #211A0D;color:  #FFCF7F;padding: 0 0 0 0;">SUBMIT</div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="submitted-query">
+        <div *ngFor="let query of queriesToBeSubmitted" class="submitted-query-row">
+            <div class="query">{{ query }}</div>
+            <div class="status"></div>
+            <div class="progress">
+                <div class="circle"></div>
+                <div class="big-circle"></div>
+                <div class="bigger-circle"></div>
+            </div>
+        </div>
+    </div>
+</div>
